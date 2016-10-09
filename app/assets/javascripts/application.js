@@ -9,10 +9,27 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+
+// app/assets/javascripts/application.js
+
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require bootstrap-sprockets
-//= require jquery
+//= require_tree .
+//= require_self
+
+jQuery(document).ready(function($) {
+    $('.logout a').click(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: '/logout',
+            type: 'DELETE',
+            dataType: 'json',
+            data: { authenticity_token: $('meta[name="csrf-token"]').attr('content')}
+        })
+            .always(function() {
+                location.href="/home"
+            });
+    });
+});
