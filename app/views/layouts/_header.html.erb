@@ -15,11 +15,11 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">HOME</a></li>
-        <li><a href="/static_pages/help">HELP</a></li>
+        <li><%= link_to "Help",  help_path%></li>
         <% if logged_in? %>
             <li class="logout"><a href="/logout">LOG OUT</a></li>
         <% else %>
-            <li><a href="/login">LOGIN</a></li>
+            <li><%= link_to "Log in",  login_path%></li>
         <% end %>
 
       </ul>
